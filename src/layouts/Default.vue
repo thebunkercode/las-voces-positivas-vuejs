@@ -1,7 +1,10 @@
 <template>
-    <div class="page-wrapper">
-        <slot />
+    <div class="row justify-content-center align-items-center auth">
+        <div class="col-md-6">
+            <slot />
+        </div>
     </div>
+
 </template>
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css';
