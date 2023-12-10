@@ -1,7 +1,5 @@
 <template>
     <layoutDefault>
-        <div class="row justify-content-center align-items-center auth">
-            <div class="col-md-6">
                 <div class="text-center mb-5">
                     <svg width="119" height="111" viewBox="0 0 119 111" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <rect width="119" height="111" fill="url(#pattern0)"/>
@@ -35,37 +33,32 @@
                         </div>
                     </form>
                 </div>
-            </div>
-        </div>
     </layoutDefault>
 </template>
 
 <script>
-import layoutDefault from "@/layouts/Default.vue";
-import auth from "@/store/auth"
-
-// @ is an alias to /src
-
-export default {
-    name: 'LoginView',
-    components: {
-        layoutDefault
-    },
-    data:function(){
-        return {
-            user:'',
-            email:'',
-            password:''
-        }
-    },
-    methods:{
-        login(){
-            auth.authRegister(this.user,this.email,this.password).then(response=>{
-                console.log(response);
-            }).catch(error=>{
-                console.error(error);
-            })
+    import layoutDefault from "@/layouts/Default.vue";
+    import auth from "@/store/auth"
+    export default {
+        name: 'LoginView',
+        components: {
+            layoutDefault
+        },
+        data:function(){
+            return {
+                user:'',
+                email:'',
+                password:''
+            }
+        },
+        methods:{
+            login(){
+                auth.authRegister(this.user,this.email,this.password).then(response=>{
+                    console.log(response);
+                }).catch(error=>{
+                    console.error(error);
+                })
+            }
         }
     }
-}
 </script>

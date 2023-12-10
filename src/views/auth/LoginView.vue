@@ -1,7 +1,5 @@
 <template>
     <layoutDefault>
-        <div class="row justify-content-center align-items-center auth">
-            <div class="col-md-6">
                 <div class="text-center">
                     <h4 class="text-center">Bienvenido</h4>
                 </div>
@@ -40,8 +38,6 @@
                         </div>
                     </form>
                 </div>
-            </div>
-        </div>
     </layoutDefault>
 </template>
 
