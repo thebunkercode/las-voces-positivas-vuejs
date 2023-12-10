@@ -34,6 +34,9 @@
                 </div>
             </form>
         </div>
+        <div class="text-center">
+            <router-link :to="{name:'login'}">Iniciar Sesión</router-link>
+        </div>
     </layoutDefault>
 </template>
 
