@@ -16,6 +16,11 @@ const router = createRouter({
       name: 'register',
       component: RegisterView
     },
+    {
+      path: '/',
+      name: 'home',
+      component: HomeView
+    },
 
     // {
     //   path: '/about',
