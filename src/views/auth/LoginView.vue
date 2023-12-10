@@ -18,8 +18,8 @@
                 <div class="">
                     <form class="row" v-on:submit.prevent="login">
                         <div class="col-12 mb-3">
-                            <label>Nombre de usuario</label>
-                            <input class="form-control" v-model="user" type="text">
+                            <label>Correo eléctronico</label>
+                            <input class="form-control" v-model="email" type="email">
                         </div>
                         <div class="col-12 mb-3">
                             <label>Contraseña</label>
@@ -54,14 +54,14 @@ export default {
     },
     data:function(){
         return {
-            user:'',
+            email:'',
             password:''
         }
     },
     methods:{
         login(){
             console.log(import.meta.env.VITE_API_URL);
-            auth.authLogin(this.user,this.password).then(response=>{
+            auth.authLogin(this.email,this.password).then(response=>{
                 console.log(response);
             }).catch(error=>{
                 console.error(error);

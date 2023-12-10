@@ -1,7 +1,7 @@
 <template>
     <layoutDefault>
         <div class="mb-3 mt-4">
-            <h2 class="btn btn-blue w-100">BIENVENIDO</h2>
+            <h3 class="btn-blue w-100 text-center py-2">BIENVENIDO</h3>
         </div>
         <div class="text-center mb-3">
             <svg width="171" height="161" viewBox="0 0 171 161" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -14,8 +14,12 @@
                 </defs>
             </svg>
         </div>
-        <div class="post mb-5">
+        <div class="post mb-4">
             <post-item-component v-for="postItem in postItems" :postItem=postItem></post-item-component>
+        </div>
+        <div class="navigation text-center mb-5">
+            <button class="btn btn-blue btn-prev mx-1" @click="navigationPrev"> Prev </button>
+            <button class="btn btn-blue btn-prev mX-1" @click="navigationNext"> Next </button>
         </div>
         <div>
             <p class="text-center mb-0 fw-bold">¿Te interesó</p>
@@ -23,13 +27,14 @@
             <p class="text-center mb-0 fw-bold"><router-link :to="{name:'register'}">Crea una cuenta</router-link></p>
             <p class="text-center mb-0 fw-bold"><router-link :to="{name:'login'}">Iniciar Sesión</router-link></p>
         </div>
+
     </layoutDefault>
 </template>
 
 <script>
     import layoutDefault from "@/layouts/Default.vue";
-    import PostItem from "@/components/post/PostItem.vue";
     import PostItemComponent from "@/components/post/PostItem.vue";
+    import posts from "@/store/posts.js";
     export default {
         name: 'LoginView',
         components: {
@@ -39,26 +44,36 @@
         data:function(){
             return {
                 postItems:[
-                    {
-                        'id':1,
-                        'post':'Frase #1'
-                    },
-                    {
-                        'id':2,
-                        'post':'Frase #2'
-                    },
-                    {
-                        'id':3,
-                        'post':'Frase #3'
-                    },
-                    {
-                        'id':4,
-                        'post':'Frase #4'
-                    }
-                ]
+                ],
+                page:1,
+                totalPages:4,
             }
         },
         methods:{
+            navigationPrev(){
+                let view=this.page;
+                view--;
+                if (view<1){return;}
+                this.page=view;
+                this.listPost();
+            },
+            navigationNext(){
+                let view=this.page;
+                view++;
+                if (view>this.totalPages){return}
+                this.page=view;
+                this.listPost();
+            },
+            listPost(){
+                posts.getPosts(this.page).then(response=>{
+                    if (response.success==true){
+                        this.postItems=response.rows
+                    }
+                })
+            }
+        },
+        mounted() {
+            this.listPost();
         }
     }
 </script>

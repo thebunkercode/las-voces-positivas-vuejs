@@ -1,7 +1,7 @@
 <template>
     <div class="post mb-3">
         <div class="post__text mb-2">
-            <p>{{postItem.post}}</p>
+            <p>{{postItem.title}}</p>
         </div>
         <div class="post__options">
             <div class="d-flex justify-content-around">
